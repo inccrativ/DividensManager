@@ -7,18 +7,16 @@
 
 		<title>DivdendsManager</title>
 
-		<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
-		<script>
-		// Initialize Firebase
-		firebase.initializeApp({
-			apiKey: "AIzaSyDpFi8LDK6bmeNWX9H7VPGl7ZoFfm6_29Y",
-			authDomain: "dividendmanager-8ed75.firebaseapp.com",
-			databaseURL: "https://dividendmanager-8ed75.firebaseio.com",
-			projectId: "dividendmanager-8ed75",
-			storageBucket: "dividendmanager-8ed75.appspot.com",
-			messagingSenderId: "442113100626"
-		});
-		</script>
+		<!-- firebase sdk -->
+		<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-auth.js"></script>
+
+		<!-- firebase ui -->
+		<script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+
+		<!-- dm auth module-->
+		<script src="fbauth.js"></script>
 
 		<script id="sap-ui-bootstrap"
 			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
@@ -30,19 +28,71 @@
 
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 
+		<!-- login links -->
+		<link rel="icon" type="image/png" href="login/images/icons/favicon.ico"/>
+		<link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css">
+		<link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css">
+		<link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css">
+		<link rel="stylesheet" type="text/css" href="login/css/util.css">
+		<link rel="stylesheet" type="text/css" href="login/css/main.css">
+
+
+		<!-- setup auth & dm -->
 		<script>
-			sap.ui.getCore().attachInit(function() {
-				new sap.m.Shell({
-					app: new sap.ui.core.ComponentContainer({
-						height : "100%",
-						name : "incc.DivdendsManager"
-					})
-				}).placeAt("content");
+			// setup firebase
+			firebase.initializeApp(DmAuth.getFirebaseConfig());
+			//check user status
+			firebase.auth().onAuthStateChanged(function (user) {
+				if (user) {
+					DmAuth.showDm();
+					DmAuth.hideFirebaseAuthUiLoader();
+					DmAuth.setupDm();
+				} else {
+					//setup firebase ui
+					var ui = new firebaseui.auth.AuthUI(firebase.auth());
+					ui.start('#firebaseui-auth-container', DmAuth.getUiConfig());
+					DmAuth.hideDm();
+				}
 			});
 		</script>
 	</head>
 
-	<body class="sapUiBody" id="content">
+	<!-- firebase auth login -->
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="https://2.gravatar.com/avatar/25b3db73a8b6a3483599f72d1a94f608?s=400&d=mm" width="100px" height="100px">
+				</div>
+
+				<form class="login100-form validate-form">
+					<span class="login100-form-title" >
+						Welcome to Dividends Manager
+					</span>
+					<div id="firebaseui-auth-container"></div>
+					<div id="loader">... Loading ...</div>
+				</form>
+			</div>
+	</div>
+
+	<!-- ui5 body -->
+
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
 	</body>
 
+	<!-- login scripting -->
+	<script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="login/vendor/bootstrap/js/popper.js"></script>
+	<script src="login/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="login/vendor/select2/select2.min.js"></script>
+	<script src="login/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<script src="login/js/main.js"></script>
 </html>
