@@ -1,0 +1,2 @@
+# DividensManager
+Dividens manager app
