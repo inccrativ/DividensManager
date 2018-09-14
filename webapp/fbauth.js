@@ -1,12 +1,12 @@
 window.DmAuth = (function() {
     // firebase config
     var config = {
-        apiKey: "AIzaSyDpFi8LDK6bmeNWX9H7VPGl7ZoFfm6_29Y",
+        apiKey: "",
         authDomain: "dividendmanager-8ed75.firebaseapp.com",
         databaseURL: "https://dividendmanager-8ed75.firebaseio.com",
         projectId: "dividendmanager-8ed75",
-        storageBucket: "dividendmanager-8ed75.appspot.com",
-        messagingSenderId: "442113100626"
+        storageBucket: "",
+        messagingSenderId: ""
       };
   
     // FirebaseUI config.
