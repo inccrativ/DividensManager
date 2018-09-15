@@ -1,13 +1,6 @@
 window.DmAuth = (function() {
     // firebase config
-    var config = {
-        apiKey: "AIzaSyDpFi8LDK6bmeNWX9H7VPGl7ZoFfm6_29Y",
-        authDomain: "dividendmanager-8ed75.firebaseapp.com",
-        databaseURL: "https://dividendmanager-8ed75.firebaseio.com",
-        projectId: "dividendmanager-8ed75",
-        storageBucket: "dividendmanager-8ed75.appspot.com",
-        messagingSenderId: "442113100626"
-      };
+    var config = window.fb;
   
     // FirebaseUI config.
     var uiConfig = {
@@ -41,6 +34,7 @@ window.DmAuth = (function() {
     // hide loader control and auth container
     function hideAllFirebaseAuthUi() {
       document.getElementById("firebaseui-auth-container").style.display = "none";
+      document.getElementById("login-container").style.display = "none";
       document.getElementById("loader").style.display = "none";
     }
   
