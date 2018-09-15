@@ -33,9 +33,10 @@ window.DmAuth = (function() {
   
     // hide loader control and auth container
     function hideAllFirebaseAuthUi() {
-      document.getElementById("firebaseui-auth-container").style.display = "none";
-      document.getElementById("login-container").style.display = "none";
-      document.getElementById("loader").style.display = "none";
+      document.getElementById("welcome").style.display = "none";
+      // document.getElementById("firebaseui-auth-container").style.display = "none";
+      // document.getElementById("login-container").style.display = "none";
+      // document.getElementById("loader").style.display = "none";
     }
   
     // hide ui5 body

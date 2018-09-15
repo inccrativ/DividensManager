@@ -1,1 +1,24 @@
-/* Enter your custom styles here */
+#welcome {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 30%;
+    margin-block-end: 10%;
+    margin-inline-start: 20%;
+    margin-inline-end: 20%;
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+    /* width: 20em; */
+    height: 20em;
+}
+
+img.inccImage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px;
+    padding-top: 7%;
+  }
+
+  #inccHref {
+    color: gray;
+  }
